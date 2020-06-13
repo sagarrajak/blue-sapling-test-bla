@@ -24,6 +24,7 @@ export function NavbarComponent() {
   const apiLocationIdSearchState = useSelector(
     (state) => state[apiLocationIdSearch.uniqueKey]
   );
+  const currentCity = useSelector((state) => state.stateSearch.currentCity);
 
   useEffect(() => {
     if (!apiLocationIdSearchState.loading) {
@@ -64,6 +65,10 @@ export function NavbarComponent() {
               <Button
                 color="primary"
                 onClick={() => {
+                  if (!currentCity) {
+                    alert("please select city");
+                    return;
+                  }
                   dispatch({
                     type: API_ACTION,
                     payload: {
@@ -71,7 +76,7 @@ export function NavbarComponent() {
                       url: "/locations",
                       method: "GET",
                       data: {
-                        query: "jamshedpur",
+                        query: currentCity,
                       },
                     },
                   });

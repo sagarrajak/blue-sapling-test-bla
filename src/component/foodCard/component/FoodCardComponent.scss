@@ -1,24 +1,21 @@
 .foodCard {
-    &__cardImage {
-
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 1em;
+  &__cardImage {
+  }
+  &__cardBody {
+    &-cardTitle {
     }
-    &__cardBody {
-        &-cardTitle {
-
-        }
-        &-cardSubtitle{
-
-        }
-        &-cardText {
-
-        }
+    &-cardSubtitle {
     }
-    &__cardFooter {
-        &-callButton {
-
-        }
-        &-deleteButton {
-
-        }
+    &-cardText {
     }
+  }
+  &__cardFooter {
+    &-callButton {
+    }
+    &-deleteButton {
+    }
+  }
 }

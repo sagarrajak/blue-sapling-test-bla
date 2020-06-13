@@ -16,7 +16,10 @@ export function FoodCardComponent({ restaurant }) {
     <Card className="foodCard">
       <CardImg
         top
-        src={restaurant.thumb}
+        src={
+          restaurant.thumb ||
+          "https://via.placeholder.com/500x500.png?text=Placeholder"
+        }
         alt="Card image cap"
         className="foodCard__cardImage"
         style={{
