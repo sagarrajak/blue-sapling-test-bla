@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import {
   Button,
   Card,
@@ -6,12 +7,14 @@ import {
   CardFooter,
   CardImg,
   CardSubtitle,
-  CardText,
   CardTitle,
 } from "reactstrap";
+import { deleteSingleCardAction } from "../../navbar/actions/restorentSearchAction";
 import "./FoodCardComponent.scss";
 
 export function FoodCardComponent({ restaurant }) {
+  const dispatch = useDispatch();
+
   return (
     <Card className="foodCard">
       <CardImg
@@ -29,10 +32,18 @@ export function FoodCardComponent({ restaurant }) {
           objectFit: "contain",
         }}
       />
+
       <CardBody className="foodCard__cardBody">
         <CardTitle className="foodCard__cardBody-cardTitle">
           {restaurant.name}
         </CardTitle>
+        <Button
+          onClick={() => {
+            dispatch(deleteSingleCardAction(restaurant.id));
+          }}
+        >
+          <i className="fa fa-trash"></i>
+        </Button>
         <div>
           Images in given
           <a href={restaurant.url}> Url</a>
