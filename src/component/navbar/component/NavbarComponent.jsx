@@ -1,26 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  Button,
   Collapse,
   Nav,
   Navbar,
   NavbarBrand,
   NavbarText,
-  NavbarToggler,
   NavItem,
 } from "reactstrap";
-import { SearchStateComponent, SearchCityComponent } from "../../foodSearch/index";
+import { API_ACTION } from "../../../store/apiMiddleware";
+import {
+  SearchCityComponent,
+  SearchStateComponent,
+} from "../../foodSearch/index";
+import {
+  apiLocationIdSearch,
+  apiRestaurantFetch,
+} from "../actions/restorentSearchAction";
 
 export function NavbarComponent() {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const apiLocationIdSearchState = useSelector(
+    (state) => state[apiLocationIdSearch.uniqueKey]
+  );
 
-  const toggle = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    if (!apiLocationIdSearchState.loading) {
+      if (apiLocationIdSearchState.success) {
+        dispatch({
+          type: API_ACTION,
+          payload: {
+            ...apiRestaurantFetch,
+            url: "/search",
+            method: "GET",
+            data: {
+              entity_id:
+                apiLocationIdSearchState.success.location_suggestions[0]
+                  .entity_id,
+              entity_type: "city",
+            },
+          },
+        });
+      }
+    }
+  }, [apiLocationIdSearchState]);
 
   return (
     <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand>Blue Sampling Food</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
+        <Collapse navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
               <SearchStateComponent />
@@ -29,7 +59,28 @@ export function NavbarComponent() {
               <SearchCityComponent />
             </NavItem>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
+          <NavbarText>
+            <NavItem>
+              <Button
+                color="primary"
+                onClick={() => {
+                  dispatch({
+                    type: API_ACTION,
+                    payload: {
+                      ...apiLocationIdSearch,
+                      url: "/locations",
+                      method: "GET",
+                      data: {
+                        query: "jamshedpur",
+                      },
+                    },
+                  });
+                }}
+              >
+                Search
+              </Button>
+            </NavItem>
+          </NavbarText>
         </Collapse>
       </Navbar>
     </div>

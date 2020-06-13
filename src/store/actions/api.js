@@ -1,16 +1,68 @@
-import { API_END, API_ERROR, API_START } from "./types";
+/**
+ *
+ * @param {String} uniqueKey
+ */
+export const getApiHelper = (uniqueKey) => {
+  const onStart = `${uniqueKey}_onStart`;
+  const onFailure = `${uniqueKey}_onFailure`;
+  const onSuccess = `${uniqueKey}_onSuccess`;
+  const onEnd = `${uniqueKey}_onEnd`;
 
-export const apiStart = (payload) => ({
-  type: API_START,
-  payload,
-});
+  const initState = {
+    loading: false,
+    success: null,
+    error: null,
+    url: "",
+    method: "",
+    data: "",
+  };
 
-export const apiEnd = (payload) => ({
-  type: API_END,
-  payload,
-});
+  const apiReducer = (
+    state = {
+      ...initState,
+    },
+    action
+  ) => {
+    switch (action.type) {
+      case onStart:
+        return {
+          ...initState,
+          loading: true,
+          url: action.payload.url,
+          method: action.payload.method,
+          data: action.payload.data,
+        };
+      case onSuccess: {
+        return {
+          ...state,
+          success: action.payload,
+          error: null,
+        };
+      }
+      case onFailure: {
+        return {
+          ...state,
+          success: null,
+          error: action.payload,
+        };
+      }
+      case onEnd: {
+        return {
+          ...state,
+          loading: false,
+        };
+      }
+      default:
+        return state;
+    }
+  };
 
-export const apiError = (error) => ({
-  type: API_ERROR,
-  error,
-});
+  return {
+    reducer: apiReducer,
+    uniqueKey,
+    onStart,
+    onFailure,
+    onSuccess,
+    onEnd,
+  };
+};
