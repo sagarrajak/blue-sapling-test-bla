@@ -1,2 +1,2 @@
-import { FoodSearchComponent } from "./FoodSearchComponent.jsx";
+import { FoodSearchComponent } from "./component/FoodSearchComponent.jsx";
 export { FoodSearchComponent };

@@ -1,5 +1,5 @@
 import React from 'react'
-import { FoodCardComponent } from '../foodCard'
+import { FoodCardComponent } from '../../foodCard'
 
 export  function MainContentComponent() {
     return (

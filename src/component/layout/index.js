@@ -1,2 +1,2 @@
-import { MainContentComponent } from './MainContentComponent';
+import { MainContentComponent } from './component/MainContentComponent';
 export { MainContentComponent }

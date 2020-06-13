@@ -1,2 +1,2 @@
-import { FoodCardComponent } from "./FoodCardComponent.jsx";
+import { FoodCardComponent } from "./component/FoodCardComponent.jsx";
 export { FoodCardComponent };
