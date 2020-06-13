@@ -1,2 +1,3 @@
-import { FoodSearchComponent } from "./component/FoodSearchComponent.jsx";
-export { FoodSearchComponent };
+import { SearchStateComponent } from "./component/SearchStateComponent";
+export { SearchStateComponent };
+

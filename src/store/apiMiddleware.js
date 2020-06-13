@@ -2,7 +2,7 @@ import axios from "axios";
 import { apiEnd, apiError, apiStart } from "./actions/api";
 import { API } from "./actions/types";
 
-const apiMiddleware = ({ dispatch }) => (next) => (action) => {
+export const apiMiddleware = ({ dispatch }) => (next) => (action) => {
   next(action);
 
   if (action.type !== API) return;
@@ -49,4 +49,3 @@ const apiMiddleware = ({ dispatch }) => (next) => (action) => {
     });
 };
 
-export default apiMiddleware;

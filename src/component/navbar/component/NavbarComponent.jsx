@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Typeahead } from "react-bootstrap-typeahead";
 import {
   Collapse,
   Nav,
@@ -9,6 +8,7 @@ import {
   NavbarToggler,
   NavItem,
 } from "reactstrap";
+import { SearchStateComponent } from "../../foodSearch/component/SearchStateComponent";
 
 export function NavbarComponent() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,13 +23,7 @@ export function NavbarComponent() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <Typeahead
-                id="basic-typeahead-example"
-                labelKey="name"
-                onChange={() => {}}
-                options={[]}
-                placeholder="Choose ..."
-              />
+              <SearchStateComponent />
             </NavItem>
           </Nav>
           <NavbarText>Simple Text</NavbarText>

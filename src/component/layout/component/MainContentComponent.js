@@ -12,7 +12,6 @@ export  function MainContentComponent() {
             <FoodCardComponent/>
             <FoodCardComponent/>
             <FoodCardComponent/>
-
             <FoodCardComponent/>
             <FoodCardComponent/>
             <FoodCardComponent/>
