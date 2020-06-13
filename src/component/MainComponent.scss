@@ -1,0 +1,14 @@
+ .root-container {
+  &__mainContainer {
+    display: flex;
+    flex-direction: row;
+    &_sidebar {
+        width: 15%;
+        height: 100%;
+    }
+    &_layout_container {
+        width: 85%;
+        overflow-y: scroll;
+    }
+  }
+}
