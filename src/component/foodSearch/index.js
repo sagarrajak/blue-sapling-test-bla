@@ -1,3 +1,4 @@
 import { SearchStateComponent } from "./component/SearchStateComponent";
-export { SearchStateComponent };
+import { SearchCityComponent } from "./component/SearchCityComponent";
+export { SearchStateComponent, SearchCityComponent };
 

@@ -2,16 +2,18 @@ import React from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { useDispatch } from "react-redux";
 import { states } from "../../../utils/index";
-import { setCurrentCityAction } from '../actions/foodSearchActionsCreator';
+import { setCurrentStateAction } from "../actions/foodSearchActionsCreator";
 
 export function SearchStateComponent() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <Typeahead
-      id="basic-typeahead-example"
+      id="typeahead-state"
       onChange={(selected) => {
-        // dispatch(setCurrentCityAction(selected[0]));
+        if (selected && selected.length > 0) {
+          dispatch(setCurrentStateAction(selected[0]));
+        }
       }}
       options={[...states]}
       placeholder="Choose state..."

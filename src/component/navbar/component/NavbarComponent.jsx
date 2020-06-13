@@ -8,7 +8,7 @@ import {
   NavbarToggler,
   NavItem,
 } from "reactstrap";
-import { SearchStateComponent } from "../../foodSearch/component/SearchStateComponent";
+import { SearchStateComponent, SearchCityComponent } from "../../foodSearch/index";
 
 export function NavbarComponent() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +24,9 @@ export function NavbarComponent() {
           <Nav className="mr-auto" navbar>
             <NavItem>
               <SearchStateComponent />
+            </NavItem>
+            <NavItem>
+              <SearchCityComponent />
             </NavItem>
           </Nav>
           <NavbarText>Simple Text</NavbarText>

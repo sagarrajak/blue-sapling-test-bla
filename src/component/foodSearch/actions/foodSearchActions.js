@@ -1,1 +1,2 @@
+export const SET_CURRENT_STATE = 'SET_CURRENT_STATE';
 export const SET_CURRENT_CITY = 'SET_CURRENT_CITY';
