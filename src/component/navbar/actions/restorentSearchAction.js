@@ -24,9 +24,8 @@ export const deleteSingleCardAction = (payload) => ({
   payload,
 });
 
-export const deleteBulkCardAction = (payload) => ({
+export const deleteBulkCardAction = () => ({
   type: DELETE_BULK_CARD_ACTION,
-  payload,
 });
 
 export const setInitDataAction = (payload) => ({

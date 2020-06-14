@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   Button,
@@ -8,13 +8,20 @@ import {
   CardImg,
   CardSubtitle,
   CardTitle,
+  FormGroup,
+  Input,
+  Label,
 } from "reactstrap";
-import { deleteSingleCardAction } from "../../navbar/actions/restorentSearchAction";
+import {
+  deleteSingleCardAction,
+  selectCardAction,
+  deselectCardAction,
+} from "../../navbar/actions/restorentSearchAction";
 import "./FoodCardComponent.scss";
 
 export function FoodCardComponent({ restaurant }) {
   const dispatch = useDispatch();
-
+  const [checkboxValue, setCheckboxValue] = useState(restaurant.isSelected);
   return (
     <Card className="foodCard">
       <CardImg
@@ -55,6 +62,24 @@ export function FoodCardComponent({ restaurant }) {
       <CardFooter className="foodCard__cardFooter">
         <Button className="foodCard__cardFooter-callButton">Call</Button>
         <Button className="foodCard__cardFooter-deleteButton">Delete</Button>
+        <FormGroup check>
+          <Label check>
+            <Input
+              type="checkbox"
+              id="checkbox2"
+              value={checkboxValue}
+              onClick={(evt) => {
+                setCheckboxValue(!checkboxValue);
+                if (!checkboxValue) {
+                  dispatch(selectCardAction(restaurant.id));
+                } else {
+                  dispatch(deselectCardAction(restaurant.id));
+                }
+              }}
+            />
+            Select me
+          </Label>
+        </FormGroup>
       </CardFooter>
     </Card>
   );

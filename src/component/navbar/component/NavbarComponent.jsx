@@ -17,6 +17,7 @@ import {
 import {
   apiLocationIdSearch,
   apiRestaurantFetch,
+  deleteBulkCardAction,
 } from "../actions/restorentSearchAction";
 
 export function NavbarComponent() {
@@ -60,7 +61,7 @@ export function NavbarComponent() {
               <SearchCityComponent />
             </NavItem>
           </Nav>
-          <NavbarText>
+          <Nav>
             <NavItem>
               <Button
                 color="primary"
@@ -85,7 +86,20 @@ export function NavbarComponent() {
                 Search
               </Button>
             </NavItem>
-          </NavbarText>
+            <NavItem>
+              <Button
+                color="primary"
+                onClick={() => {
+                  dispatch(deleteBulkCardAction());
+                }}
+                style={{
+                  marginLeft: "10px",
+                }}
+              >
+                Bulk Delete
+              </Button>
+            </NavItem>
+          </Nav>
         </Collapse>
       </Navbar>
     </div>

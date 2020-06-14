@@ -45,34 +45,29 @@ const deleteBulRestaurantFromList = (state) => {
 
 const selectCard = (state, id) => {
   const cpyState = _.cloneDeep(state);
+  console.log(cpyState);
   const indexSelected = cpyState.currentSelectedList.findIndex(
-    ({ restaurant }) => {
-      if (restaurant.id === id) {
-        restaurant.isSelected = true;
-        return true;
-      }
-      return false;
+    (restaurantId) => {
+      return restaurantId === id;
     }
   );
   if (indexSelected < 0) {
     cpyState.currentSelectedList.push(id);
   }
+  return cpyState;
 };
 
 const deselectCard = (state, id) => {
   const cpyState = _.cloneDeep(state);
   const indexSelected = cpyState.currentSelectedList.findIndex(
-    ({ restaurant }) => {
-      if (restaurant.id === id) {
-        restaurant.isSelected = false;
-        return true;
-      }
-      return false;
+    (restaurantId) => {
+      return restaurantId === id;
     }
   );
   if (indexSelected >= 0) {
     cpyState.currentSelectedList.splice(indexSelected, 1);
   }
+  return cpyState;
 };
 
 export const navbarReducer = (state = getInitState, action) => {
